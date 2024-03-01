@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include <string>
 #include <geometry_msgs/PoseStamped.h>
+#include "std_msgs/Bool.h"
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/CommandTOL.h>
 #include <mavros_msgs/SetMode.h>
@@ -9,6 +10,8 @@
 
 mavros_msgs::State current_state;
 geometry_msgs::PoseStamped pose;
+
+ 
 
 
 void state_cb(const mavros_msgs::State::ConstPtr& msg){
@@ -33,6 +36,10 @@ int main(int argv,char** argc)
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
         ("mavros/set_mode");
 
+ 
+
+    
+
     ros::Rate rate(100.0);
 
     while(ros::ok() && !current_state.connected){
@@ -40,11 +47,12 @@ int main(int argv,char** argc)
         rate.sleep();
     }
  
- 
-
     pose.pose.position.x = 0;
     pose.pose.position.y = 0;
     pose.pose.position.z = 0;
+
+    ros::topic::waitForMessage<std_msgs::Bool>("MAV/arm");
+
     //send a few setpoints before starting
 
     for(int i = 100; ros::ok() && i > 0; --i){
@@ -68,8 +76,8 @@ int main(int argv,char** argc)
     if( arming_client.call(arm_cmd) && arm_cmd.response.success) {
         ROS_INFO("Vehicle armed");
     }
-  
-   
+
+    ros::topic::waitForMessage<std_msgs::Bool>("MAV/takeoff");
     pose.pose.position.z = 5;
     sleep(5);
     ros::Time time_out = ros::Time::now();
@@ -95,7 +103,7 @@ int main(int argv,char** argc)
         local_pos_pub.publish(pose);
 
         ros::spinOnce();
-        rate.sleep();
+        rate.sleep();   
     }
         ROS_WARN("kill!");
         offb_set_mode.request.custom_mode = "AUTO.LAND";

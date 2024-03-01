@@ -121,6 +121,7 @@ int main(int argc,char **argv)
     ROS_INFO("(0):takeoff\n (1):hovering_gripper_stop\n (2):hovering_gripper_scissors\n (3):land");
     
     ros::Rate rate(50);
+    sleep(30);
     while(ros::ok())
     {
 
@@ -130,7 +131,6 @@ int main(int argc,char **argv)
             {
             case 0:
                 {
-                    
                         trajectory.data = HOVERING_GRIPPER_STATIC;
                         arm_signel.data = ARM;
                         ROS_INFO("THE FLY TRAJECTORY IS: HOVERING_GRIPPER_STATIC!!!");
@@ -139,7 +139,7 @@ int main(int argc,char **argv)
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                     
-                        while(ros::ok() && state() == 1 && arm() == 1)
+                        while(ros::ok() && state() == 0 && arm() == 0)
                         {
                             ROS_WARN("WAIT_ALL_MAV_ARE_READY");
                             ros::spinOnce();
@@ -163,7 +163,7 @@ int main(int argc,char **argv)
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                         }
-                       while(ros::ok() && state() == 1 && arm() == 1)
+                       while(ros::ok() && state() == 0 && arm() == 0)
                        {
                            ROS_WARN("WAIT_ALL_MAV_ARE_READY");
                            ros::spinOnce();

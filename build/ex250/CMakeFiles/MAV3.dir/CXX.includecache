@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex250/node/MAV3.cpp
+/home/lee/workspace/ROS_ws/ex_simulation_ws/src/ex250/node/MAV3.cpp
 ros/ros.h
-/home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex250/node/ros/ros.h
+/home/lee/workspace/ROS_ws/ex_simulation_ws/src/ex250/node/ros/ros.h
 string
 -
 geometry_msgs/PoseStamped.h
@@ -23,6 +23,8 @@ mavros_msgs/State.h
 -
 mavros_msgs/Mavlink.h
 -
+std_msgs/Bool.h
+/home/lee/workspace/ROS_ws/ex_simulation_ws/src/ex250/node/std_msgs/Bool.h
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string
@@ -901,6 +903,22 @@ ros/forwards.h
 /opt/ros/noetic/include/ros/ros/forwards.h
 
 /opt/ros/noetic/include/rosconsole/macros_generated.h
+
+/opt/ros/noetic/include/std_msgs/Bool.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/noetic/include/std_msgs/Header.h
 string

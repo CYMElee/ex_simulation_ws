@@ -1,0 +1,3 @@
+<launch> 
+    <node name="fly_mode" pkg="ex_ground" type="fly_mode" output="screen"></node>
+</launch>

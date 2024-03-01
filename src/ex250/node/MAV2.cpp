@@ -6,6 +6,7 @@
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/Mavlink.h>
+#include "std_msgs/Bool.h"
 
 mavros_msgs::State current_state;
 geometry_msgs::PoseStamped pose;
@@ -45,7 +46,7 @@ int main(int argv,char** argc)
     pose.pose.position.y = 0;
     pose.pose.position.z = 0;
     //send a few setpoints before starting
-
+    ros::topic::waitForMessage<std_msgs::Bool>("MAV/arm");
     for(int i = 100; ros::ok() && i > 0; --i){
         local_pos_pub.publish(pose);
         ros::spinOnce();
@@ -68,7 +69,7 @@ int main(int argv,char** argc)
         ROS_INFO("Vehicle armed");
     }
   
-   
+    ros::topic::waitForMessage<std_msgs::Bool>("MAV/takeoff");   
     pose.pose.position.z = 5;
     sleep(5);
     ros::Time time_out = ros::Time::now();
