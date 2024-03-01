@@ -1,0 +1,8 @@
+<launch>
+    <arg name="SYS_ID4" default="4"/>
+    <group ns="MAV$(arg SYS_ID4)">
+        <param name="UAV_ID" value="$(arg SYS_ID4)"/>
+        <node name="origin_py" pkg="mav4" type="origin.py"></node>
+        <node name="MAV4" pkg="mav4" type="MAV4" output="screen"></node>
+    </group>
+</launch>

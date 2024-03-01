@@ -1,2 +1,2 @@
-ex250
--DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/lee/workspace/ROS_WS/ex_simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lee/workspace/ROS_WS/ex_simulation_ws/install -G Unix Makefiles
+mav2:mav3:mav4
+-DCATKIN_DEVEL_PREFIX=/home/lee/workspace/ROS_WS/ex_simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lee/workspace/ROS_WS/ex_simulation_ws/install -G Unix Makefiles
