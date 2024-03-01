@@ -39,12 +39,7 @@ int main(int argv,char** argc)
         ros::spinOnce();
         rate.sleep();
     }
-    ros::param::get("UAV_ID", UAV_ID);
-    ROS_INFO("Wait for setting origin and home position...");
-    std::string mavlink_topic = std::string("/MAV") + std::to_string(UAV_ID) + std::string("/mavlink/to");
-    ros::topic::waitForMessage<mavros_msgs::Mavlink>(mavlink_topic, ros::Duration(10.0));
-    ROS_INFO("Message received or timeout reached. Continuing execution.");
-    sleep(2);
+ 
  
 
     pose.pose.position.x = 0;
@@ -73,23 +68,12 @@ int main(int argv,char** argc)
     if( arming_client.call(arm_cmd) && arm_cmd.response.success) {
         ROS_INFO("Vehicle armed");
     }
-    ros::ServiceClient takeoff_cl = nh.serviceClient<mavros_msgs::CommandTOL>("mavros/cmd/takeoff");
-    mavros_msgs::CommandTOL srv_takeoff;
-    srv_takeoff.request.altitude = 0.5;
-    srv_takeoff.request.latitude = 0;
-    srv_takeoff.request.longitude = 0;
-    srv_takeoff.request.min_pitch = 0;
-    srv_takeoff.request.yaw = 0;
-    if (takeoff_cl.call(srv_takeoff)) {
-        ROS_INFO("srv_takeoff send ok %d", srv_takeoff.response.success);
-    } else {
-        ROS_ERROR("Failed Takeoff");
-    }
+  
    
-
-    sleep(10);
+    pose.pose.position.z = 5;
+    sleep(5);
     ros::Time time_out = ros::Time::now();
-    while(ros::ok() || ros::Time::now() - time_out <ros::Duration(5.0) ){
+    while(ros::ok() && ros::Time::now() - time_out <ros::Duration(10) ){
         if( current_state.mode != "OFFBOARD" &&
             (ros::Time::now() - last_request > ros::Duration(5.0))){
             if( set_mode_client.call(offb_set_mode) &&
@@ -108,13 +92,13 @@ int main(int argv,char** argc)
             }
         }
 
-        //local_pos_pub.publish(pose);
+        local_pos_pub.publish(pose);
 
         ros::spinOnce();
         rate.sleep();
     }
         ROS_WARN("kill!");
-        offb_set_mode.request.custom_mode = "LAND";
+        offb_set_mode.request.custom_mode = "AUTO.LAND";
         set_mode_client.call(offb_set_mode);
         arm_cmd.request.value = false;
         arming_client.call(arm_cmd);

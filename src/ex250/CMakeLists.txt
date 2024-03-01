@@ -10,6 +10,7 @@ project(ex250)
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   mavros_msgs
+  std_msgs
   roscpp
   rospy
   tf2

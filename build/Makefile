@@ -1051,6 +1051,19 @@ MAV1/fast:
 	$(MAKE) -f ex250/CMakeFiles/MAV1.dir/build.make ex250/CMakeFiles/MAV1.dir/build
 .PHONY : MAV1/fast
 
+#=============================================================================
+# Target rules for targets named fly_mode
+
+# Build rule for target.
+fly_mode: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fly_mode
+.PHONY : fly_mode
+
+# fast build rule for target.
+fly_mode/fast:
+	$(MAKE) -f ex_ground/CMakeFiles/fly_mode.dir/build.make ex_ground/CMakeFiles/fly_mode.dir/build
+.PHONY : fly_mode/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1132,6 +1145,7 @@ help:
 	@echo "... MAV2"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... MAV1"
+	@echo "... fly_mode"
 .PHONY : help
 
 

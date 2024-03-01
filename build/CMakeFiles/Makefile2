@@ -55,12 +55,14 @@ CMAKE_BINARY_DIR = /home/lee/workspace/ROS_WS/ex_simulation_ws/build
 # The main recursive "all" target.
 all: gtest/all
 all: ex250/all
+all: ex_ground/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: ex250/preinstall
+preinstall: ex_ground/preinstall
 
 .PHONY : preinstall
 
@@ -72,6 +74,7 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: ex250/clean
+clean: ex_ground/clean
 
 .PHONY : clean
 
@@ -153,6 +156,24 @@ ex250/clean: ex250/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 ex250/clean: ex250/CMakeFiles/MAV1.dir/clean
 
 .PHONY : ex250/clean
+
+#=============================================================================
+# Directory level rules for directory ex_ground
+
+# Recursive "all" directory target.
+ex_ground/all: ex_ground/CMakeFiles/fly_mode.dir/all
+
+.PHONY : ex_ground/all
+
+# Recursive "preinstall" directory target.
+ex_ground/preinstall:
+
+.PHONY : ex_ground/preinstall
+
+# Recursive "clean" directory target.
+ex_ground/clean: ex_ground/CMakeFiles/fly_mode.dir/clean
+
+.PHONY : ex_ground/clean
 
 #=============================================================================
 # Directory level rules for directory gtest
@@ -350,11 +371,11 @@ CMakeFiles/download_extra_data.dir/clean:
 # Target rules for target gtest/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmock.dir/all
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
+gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmock.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=11,12 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=14,15 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -381,7 +402,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=9,10 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=12,13 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -408,7 +429,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=15,16 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=18,19 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -435,7 +456,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=13,14 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=16,17 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2263,6 +2284,33 @@ MAV1: ex250/CMakeFiles/MAV1.dir/rule
 ex250/CMakeFiles/MAV1.dir/clean:
 	$(MAKE) -f ex250/CMakeFiles/MAV1.dir/build.make ex250/CMakeFiles/MAV1.dir/clean
 .PHONY : ex250/CMakeFiles/MAV1.dir/clean
+
+#=============================================================================
+# Target rules for target ex_ground/CMakeFiles/fly_mode.dir
+
+# All Build rule for target.
+ex_ground/CMakeFiles/fly_mode.dir/all:
+	$(MAKE) -f ex_ground/CMakeFiles/fly_mode.dir/build.make ex_ground/CMakeFiles/fly_mode.dir/depend
+	$(MAKE) -f ex_ground/CMakeFiles/fly_mode.dir/build.make ex_ground/CMakeFiles/fly_mode.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=9,10,11 "Built target fly_mode"
+.PHONY : ex_ground/CMakeFiles/fly_mode.dir/all
+
+# Build rule for subdir invocation for target.
+ex_ground/CMakeFiles/fly_mode.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 ex_ground/CMakeFiles/fly_mode.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles 0
+.PHONY : ex_ground/CMakeFiles/fly_mode.dir/rule
+
+# Convenience name for target.
+fly_mode: ex_ground/CMakeFiles/fly_mode.dir/rule
+
+.PHONY : fly_mode
+
+# clean rule for target.
+ex_ground/CMakeFiles/fly_mode.dir/clean:
+	$(MAKE) -f ex_ground/CMakeFiles/fly_mode.dir/build.make ex_ground/CMakeFiles/fly_mode.dir/clean
+.PHONY : ex_ground/CMakeFiles/fly_mode.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

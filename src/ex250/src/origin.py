@@ -106,7 +106,7 @@ if __name__=="__main__":
     try:
         rospy.init_node("origin_publisher")
 
-        topic = "/MAV" + str(UAVID) + "/mavlink/to"
+        topic = "/uav" + str(UAVID) + "/mavlink/to"
         print("send to topic: ", format(topic))
         mavlink_pub = rospy.Publisher(topic, Mavlink, queue_size=20)
 
