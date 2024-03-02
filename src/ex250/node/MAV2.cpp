@@ -16,14 +16,14 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
     current_state = *msg;
 }
 
-void takeoff_cb(const std_msgs::Bool::ConstPtr& msg)
-{
-    take_single = *msg;
-}
+//void takeoff_cb(const std_msgs::Bool::ConstPtr& msg)
+////{
+   // take_single = *msg;
+//}
 
 int main(int argv,char** argc)
 {
-    ros::init(argv,argc,"MAV1");
+    ros::init(argv,argc,"MAV2");
     ros::NodeHandle nh;
    
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
@@ -38,14 +38,14 @@ int main(int argv,char** argc)
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
         ("mavros/set_mode");
 
-    ros::Subscriber wait_takeoff =nh.subscribe<std_msgs::Bool>
-        ("/MAV/takeoff",10,takeoff_cb);
+  //  ros::Subscriber wait_takeoff =nh.subscribe<std_msgs::Bool>
+     //   ("/MAV/takeoff",10,takeoff_cb);
 
  
 
     
 
-    ros::Rate rate(20.0);
+    ros::Rate rate(100.0);
 
     while(ros::ok() && !current_state.connected){
         ros::spinOnce();
@@ -54,9 +54,9 @@ int main(int argv,char** argc)
  
     pose.pose.position.x = 0;
     pose.pose.position.y = 0;
-    pose.pose.position.z = 0;
+    pose.pose.position.z = 5;
 
-    ros::topic::waitForMessage<mavros_msgs::Mavlink>("mavlink/to");
+   ros::topic::waitForMessage<mavros_msgs::Mavlink>("mavlink/to");
     //send a few setpoints before starting
 
     for(int i = 100; ros::ok() && i > 0; --i){
@@ -71,7 +71,7 @@ int main(int argv,char** argc)
     mavros_msgs::CommandBool arm_cmd;
     arm_cmd.request.value = true;
 
-    sleep(3);
+   // sleep(3);
 
     if( set_mode_client.call(offb_set_mode) && offb_set_mode.response.mode_sent) {
         ROS_INFO("GUIDED enabled");
@@ -80,34 +80,33 @@ int main(int argv,char** argc)
     if( arming_client.call(arm_cmd) && arm_cmd.response.success) {
         ROS_INFO("Vehicle armed");
     }
+    ros::topic::waitForMessage<std_msgs::Bool>("/MAV/takeoff");
+    
+
+    // ros::Time last_request = ros::Time::now();
+    // while(ros::ok()){
 
 
+    //     if( current_state.mode != "OFFBOARD" &&
+    //         (ros::Time::now() - last_request > ros::Duration(10))){
+    //         if( set_mode_client.call(offb_set_mode) &&
+    //             offb_set_mode.response.mode_sent){
+    //             ROS_INFO("GUIDED enabled");
+    //         }
+    //         last_request = ros::Time::now();
+    //     } else {
+    //         if( !current_state.armed &&
+    //             (ros::Time::now() - last_request > ros::Duration(10))){
+    //             if( arming_client.call(arm_cmd) &&
+    //                 arm_cmd.response.success){
+    //                 ROS_INFO("Vehicle armed");
+    //             }
+    //             last_request = ros::Time::now();
+    //         }
+    //     }
 
-    take_single.data = 1;
-    ros::Time last_request = ros::Time::now();
-    while(ros::ok() && take_single.data){
-
-
-        if( current_state.mode != "OFFBOARD" &&
-            (ros::Time::now() - last_request > ros::Duration(2.0))){
-            if( set_mode_client.call(offb_set_mode) &&
-                offb_set_mode.response.mode_sent){
-                ROS_INFO("GUIDED enabled");
-            }
-            last_request = ros::Time::now();
-        } else {
-            if( !current_state.armed &&
-                (ros::Time::now() - last_request > ros::Duration(2.0))){
-                if( arming_client.call(arm_cmd) &&
-                    arm_cmd.response.success){
-                    ROS_INFO("Vehicle armed");
-                }
-                last_request = ros::Time::now();
-            }
-        }
-
-        
-        
+    while(ros::ok()){ 
+        local_pos_pub.publish(pose);
         //if(take_single.data == 1)
         //{
         ////    ROS_WARN("ALREADY_TAKEOFF");
@@ -133,9 +132,5 @@ int main(int argv,char** argc)
        // arm_cmd.request.value = false;
        // arming_client.call(arm_cmd);
        // sleep(3);
-
-
-
-
     return 0;
 }

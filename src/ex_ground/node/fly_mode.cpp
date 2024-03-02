@@ -42,39 +42,31 @@ enum {
 
 void state_cb1(const mavros_msgs::State::ConstPtr& msg)
 {
-    mav1_state.mode = msg->mode;
-    mav1_state.armed = msg->armed;
+    mav1_state = *msg;
     
 }
 
 void state_cb2(const mavros_msgs::State::ConstPtr& msg)
 {
-    mav2_state.mode = msg->mode;
-    mav2_state.armed = msg->armed;
+    mav2_state = *msg;
+    
     
 }
 
 void state_cb3(const mavros_msgs::State::ConstPtr& msg)
 {
-    mav3_state.mode = msg->mode;
-    mav3_state.armed = msg->armed;
+    mav3_state = *msg;
+   
 }
 
 void state_cb4(const mavros_msgs::State::ConstPtr& msg)
 {
-    mav4_state.mode = msg->mode;
-    mav4_state.armed = msg->armed;
+    mav4_state = *msg;
+    
    
 }
 
-int state() {
-    if (mav1_state.mode == "OFFBOARD" && mav2_state.mode == "OFFBOARD" && 
-        mav3_state.mode == "OFFBOARD" && mav4_state.mode == "OFFBOARD") {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+
 
 
 int arm() {
@@ -91,7 +83,7 @@ int main(int argc,char **argv)
 {
     ros::init(argc,argv,"fly_mode");
     ros::NodeHandle nh;
-
+    int c_prev = EOF;
     trajectory.data = -1;
     arm_signel.data = 0;
     takeoff_signal.data  = 0;
@@ -120,15 +112,18 @@ int main(int argc,char **argv)
     ROS_INFO("\n(0):hovering_gripper_stop\n (1):hovering_gripper_scissors\n (2):land");
     
     ros::Rate rate(50);
-    sleep(30);
     while(ros::ok())
     {
-
+       
         int c = getch();
+        if(c == EOF)
+        {
+            c = c_prev;
+        }
         if(c != EOF){
             switch (c)
             {
-            case 0:
+            case 'A':
                 {
                         trajectory.data = HOVERING_GRIPPER_STATIC;
                         arm_signel.data = ARM;
@@ -137,7 +132,7 @@ int main(int argc,char **argv)
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                     
-                        while(ros::ok() && state() == 0 && arm() == 0)
+                        while(ros::ok() && arm() == 0)
                         {
                             ROS_WARN("WAIT_ALL_MAV_ARE_READY");
                             ros::spinOnce();
@@ -150,7 +145,7 @@ int main(int argc,char **argv)
                 
                 }
                 break;
-            case 1:
+            case 'B':
                 {
                     if(c != c_prev){
                         trajectory.data = HOVERING_GRIPPER_SCISSORS;
@@ -160,7 +155,7 @@ int main(int argc,char **argv)
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                         }
-                       while(ros::ok() && state() == 0 && arm() == 0)
+                       while(ros::ok() && arm() == 0)
                        {
                            ROS_WARN("WAIT_ALL_MAV_ARE_READY");
                            ros::spinOnce();
@@ -174,7 +169,7 @@ int main(int argc,char **argv)
 
                 }
                 break;
-            case 2:
+            case 'C':
                 {
                     trajectory.data = LAND;
                     arm_signel.data = Kill;
@@ -187,7 +182,7 @@ int main(int argc,char **argv)
                 break;
             }
             }
-    
+        c_prev = c;
         ros::spinOnce();
         rate.sleep();
     
