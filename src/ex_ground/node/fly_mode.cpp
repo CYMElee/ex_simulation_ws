@@ -22,6 +22,7 @@ mavros_msgs::State mav1_state, mav2_state ,mav3_state, mav4_state;
 std_msgs::Int16 trajectory;   //-1 = NON , 0 = GUIDE & ARMING , 2 = LAND  THIS IS A TRIGGER FOR NOD ,NOT ENTER!!!
 
 std_msgs::Bool arm_signel; // 0 means disarm & land,1= arm & guide
+std_msgs::Bool kill;
 
 std_msgs::Bool takeoff_signal;
 
@@ -87,13 +88,6 @@ int main(int argc,char **argv)
     trajectory.data = -1;
     arm_signel.data = 0;
     takeoff_signal.data  = 0;
-//
-    ros::Publisher system_pose_pub = nh.advertise<geometry_msgs::PoseStamped>
-        ("system/trajectory_pose",10);
-    ros::Publisher system_vel_pub = nh.advertise<geometry_msgs::TwistStamped>
-        ("system/trajectory_vel",10);
-    ros::Publisher system_gripper_pub = nh.advertise<std_msgs::Float32MultiArray>
-        ("system/trajectory_gripper",10);
 
     ros::Subscriber MAV1 = nh.subscribe<mavros_msgs::State>
         ("/uav0/mavros/state",10,state_cb1);
@@ -104,14 +98,14 @@ int main(int argc,char **argv)
     ros::Subscriber MAV4 = nh.subscribe<mavros_msgs::State>
         ("/uav3/mavros/state",10,state_cb4);
     ros::Publisher system_trajectory = nh.advertise<std_msgs::Int16>("system/trajectory",10);
-
+    ros::Publisher system_kill = nh.advertise<std_msgs::Bool>("/system/kill",10);
 
     ros::Publisher MAV_takeoff = nh.advertise<std_msgs::Bool>("/MAV/takeoff",10);
 
 
     ROS_INFO("\n(0):hovering_gripper_stop\n (1):hovering_gripper_scissors\n (2):land");
     
-    ros::Rate rate(50);
+    ros::Rate rate(100);
     while(ros::ok())
     {
        
@@ -126,7 +120,6 @@ int main(int argc,char **argv)
             case 'A':
                 {
                         trajectory.data = HOVERING_GRIPPER_STATIC;
-                        arm_signel.data = ARM;
                         ROS_INFO("THE FLY TRAJECTORY IS: HOVERING_GRIPPER_STATIC!!!");
                         system_trajectory.publish(trajectory);
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!");
@@ -149,7 +142,6 @@ int main(int argc,char **argv)
                 {
                     if(c != c_prev){
                         trajectory.data = HOVERING_GRIPPER_SCISSORS;
-                        arm_signel.data = ARM;
                         ROS_INFO("THE FLY TRAJECTORY IS: HOVERING_GRIPPER_SCISSORS!!!");
                         system_trajectory.publish(trajectory);
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!!!!");
@@ -172,10 +164,10 @@ int main(int argc,char **argv)
             case 'C':
                 {
                     trajectory.data = LAND;
-                    arm_signel.data = Kill;
                     ROS_INFO("THE FLY TRAJECTORY IS: LAND!!!");
                     system_trajectory.publish(trajectory);
-                    
+                    system_kill.publish(kill);
+
                     ROS_INFO("PREPARING SET TO LAND MODE!!!");
                     ROS_INFO("PREPARING STE TO DISARM !!!");
                 }

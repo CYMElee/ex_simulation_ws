@@ -161,6 +161,7 @@ ex250/clean: ex250/CMakeFiles/MAV1.dir/clean
 # Directory level rules for directory ex_ground
 
 # Recursive "all" directory target.
+ex_ground/all: ex_ground/CMakeFiles/trajectory_generator.dir/all
 ex_ground/all: ex_ground/CMakeFiles/fly_mode.dir/all
 
 .PHONY : ex_ground/all
@@ -171,6 +172,7 @@ ex_ground/preinstall:
 .PHONY : ex_ground/preinstall
 
 # Recursive "clean" directory target.
+ex_ground/clean: ex_ground/CMakeFiles/trajectory_generator.dir/clean
 ex_ground/clean: ex_ground/CMakeFiles/fly_mode.dir/clean
 
 .PHONY : ex_ground/clean
@@ -371,8 +373,8 @@ CMakeFiles/download_extra_data.dir/clean:
 # Target rules for target gtest/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmock.dir/all
+gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=14,15 "Built target gmock_main"
@@ -2284,6 +2286,33 @@ MAV1: ex250/CMakeFiles/MAV1.dir/rule
 ex250/CMakeFiles/MAV1.dir/clean:
 	$(MAKE) -f ex250/CMakeFiles/MAV1.dir/build.make ex250/CMakeFiles/MAV1.dir/clean
 .PHONY : ex250/CMakeFiles/MAV1.dir/clean
+
+#=============================================================================
+# Target rules for target ex_ground/CMakeFiles/trajectory_generator.dir
+
+# All Build rule for target.
+ex_ground/CMakeFiles/trajectory_generator.dir/all:
+	$(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/depend
+	$(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles --progress-num=20,21 "Built target trajectory_generator"
+.PHONY : ex_ground/CMakeFiles/trajectory_generator.dir/all
+
+# Build rule for subdir invocation for target.
+ex_ground/CMakeFiles/trajectory_generator.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 ex_ground/CMakeFiles/trajectory_generator.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lee/workspace/ROS_WS/ex_simulation_ws/build/CMakeFiles 0
+.PHONY : ex_ground/CMakeFiles/trajectory_generator.dir/rule
+
+# Convenience name for target.
+trajectory_generator: ex_ground/CMakeFiles/trajectory_generator.dir/rule
+
+.PHONY : trajectory_generator
+
+# clean rule for target.
+ex_ground/CMakeFiles/trajectory_generator.dir/clean:
+	$(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/clean
+.PHONY : ex_ground/CMakeFiles/trajectory_generator.dir/clean
 
 #=============================================================================
 # Target rules for target ex_ground/CMakeFiles/fly_mode.dir

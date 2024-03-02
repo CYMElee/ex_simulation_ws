@@ -145,6 +145,7 @@ set(HEADERS_ include/ex_ground/getch.h)
 #add_dependencies(getch, ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_executable(fly_mode node/fly_mode.cpp
                         src/getch.cpp)
+add_executable(trajectory_generator node/trajectory_generator.cpp)                        
 
 #target_link_libraries(getch
  # ${catkin_LIBRARIES}
@@ -152,14 +153,21 @@ add_executable(fly_mode node/fly_mode.cpp
 
 
 target_link_libraries(fly_mode
- #getch
+ 
   ${catkin_LIBRARIES}
 )
+
 target_include_directories(fly_mode PRIVATE
 	include/${PROJECT_NAME}/ )
 
+target_link_libraries(trajectory_generator
+ 
+  ${catkin_LIBRARIES}
+)
 
 
+
+  
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context

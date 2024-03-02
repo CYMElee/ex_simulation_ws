@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+ex_ground/CMakeFiles/trajectory_generator.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_ground/CMakeFiles/trajectory_generator.dir/rule
+.PHONY : ex_ground/CMakeFiles/trajectory_generator.dir/rule
+
+# Convenience name for target.
+trajectory_generator: ex_ground/CMakeFiles/trajectory_generator.dir/rule
+
+.PHONY : trajectory_generator
+
+# fast build rule for target.
+trajectory_generator/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/build
+.PHONY : trajectory_generator/fast
+
+# Convenience name for target.
 ex_ground/CMakeFiles/fly_mode.dir/rule:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_ground/CMakeFiles/fly_mode.dir/rule
 .PHONY : ex_ground/CMakeFiles/fly_mode.dir/rule
@@ -209,6 +224,33 @@ node/fly_mode.cpp.s:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_ground/CMakeFiles/fly_mode.dir/build.make ex_ground/CMakeFiles/fly_mode.dir/node/fly_mode.cpp.s
 .PHONY : node/fly_mode.cpp.s
 
+node/trajectory_generator.o: node/trajectory_generator.cpp.o
+
+.PHONY : node/trajectory_generator.o
+
+# target to build an object file
+node/trajectory_generator.cpp.o:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/node/trajectory_generator.cpp.o
+.PHONY : node/trajectory_generator.cpp.o
+
+node/trajectory_generator.i: node/trajectory_generator.cpp.i
+
+.PHONY : node/trajectory_generator.i
+
+# target to preprocess a source file
+node/trajectory_generator.cpp.i:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/node/trajectory_generator.cpp.i
+.PHONY : node/trajectory_generator.cpp.i
+
+node/trajectory_generator.s: node/trajectory_generator.cpp.s
+
+.PHONY : node/trajectory_generator.s
+
+# target to generate assembly for a file
+node/trajectory_generator.cpp.s:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/node/trajectory_generator.cpp.s
+.PHONY : node/trajectory_generator.cpp.s
+
 src/getch.o: src/getch.cpp.o
 
 .PHONY : src/getch.o
@@ -248,11 +290,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... trajectory_generator"
 	@echo "... install/local"
 	@echo "... fly_mode"
 	@echo "... node/fly_mode.o"
 	@echo "... node/fly_mode.i"
 	@echo "... node/fly_mode.s"
+	@echo "... node/trajectory_generator.o"
+	@echo "... node/trajectory_generator.i"
+	@echo "... node/trajectory_generator.s"
 	@echo "... src/getch.o"
 	@echo "... src/getch.i"
 	@echo "... src/getch.s"

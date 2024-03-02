@@ -7,24 +7,40 @@
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/Mavlink.h>
+#include "std_msgs/Int16.h"
 mavros_msgs::State current_state;
 geometry_msgs::PoseStamped pose;
 
 std_msgs::Bool take_single;
+std_msgs::Int16 traj;
 
 void state_cb(const mavros_msgs::State::ConstPtr& msg){
     current_state = *msg;
 }
 
+void trajectory_mode_cb(const std_msgs::Int16::ConstPtr& msg)
+{
+    traj = *msg;
+}
+
 //void takeoff_cb(const std_msgs::Bool::ConstPtr& msg)
-////{
-   // take_single = *msg;
+//{
+  //  take_single = *msg;
 //}
+
+enum {
+    HOVERING_GRIPPER_STATIC,
+    HOVERING_GRIPPER_SCISSORS,
+    LAND,
+}TRAJECTORY;
 
 int main(int argv,char** argc)
 {
     ros::init(argv,argc,"MAV2");
     ros::NodeHandle nh;
+
+    ros::Subscriber trajectory_mode = nh.subscribe<std_msgs::Int16>
+        ("system/trajectory",10,trajectory_mode_cb); 
    
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
         ("mavros/state", 10, state_cb);
@@ -39,24 +55,24 @@ int main(int argv,char** argc)
         ("mavros/set_mode");
 
   //  ros::Subscriber wait_takeoff =nh.subscribe<std_msgs::Bool>
-     //   ("/MAV/takeoff",10,takeoff_cb);
-
- 
-
+       // ("/MAV/takeoff",10,takeoff_cb);
+    ros::Rate rate(100);
+    ros::Time time_out = ros::Time::now();
+    while(ros::ok() && ros::Time::now()-time_out<ros::Duration(3))
+    {
+        ros::spinOnce();
+        rate.sleep();
+    }
     
-
-    ros::Rate rate(100.0);
-
     while(ros::ok() && !current_state.connected){
         ros::spinOnce();
         rate.sleep();
     }
- 
     pose.pose.position.x = 0;
     pose.pose.position.y = 0;
     pose.pose.position.z = 5;
 
-   ros::topic::waitForMessage<mavros_msgs::Mavlink>("mavlink/to");
+    ros::topic::waitForMessage<mavros_msgs::Mavlink>("mavlink/to");
     //send a few setpoints before starting
 
     for(int i = 100; ros::ok() && i > 0; --i){
@@ -82,11 +98,8 @@ int main(int argv,char** argc)
     }
     ros::topic::waitForMessage<std_msgs::Bool>("/MAV/takeoff");
     
-
     // ros::Time last_request = ros::Time::now();
     // while(ros::ok()){
-
-
     //     if( current_state.mode != "OFFBOARD" &&
     //         (ros::Time::now() - last_request > ros::Duration(10))){
     //         if( set_mode_client.call(offb_set_mode) &&
@@ -104,14 +117,10 @@ int main(int argv,char** argc)
     //             last_request = ros::Time::now();
     //         }
     //     }
-
-    while(ros::ok()){ 
+    while(ros::ok()){
+        
         local_pos_pub.publish(pose);
-        //if(take_single.data == 1)
-        //{
-        ////    ROS_WARN("ALREADY_TAKEOFF");
-        //    break;
-       // }
+
         ros::spinOnce();
         rate.sleep();   
     }
@@ -126,11 +135,11 @@ int main(int argv,char** argc)
     //}
     
 
-       // ROS_WARN("kill!");
-      //  offb_set_mode.request.custom_mode = "AUTO.LAND";
-       // set_mode_client.call(offb_set_mode);
-       // arm_cmd.request.value = false;
-       // arming_client.call(arm_cmd);
-       // sleep(3);
+    ROS_WARN("kill!");
+    offb_set_mode.request.custom_mode = "AUTO.LAND";
+    set_mode_client.call(offb_set_mode);
+    arm_cmd.request.value = false;
+    arming_client.call(arm_cmd);
+    sleep(3);
     return 0;
 }

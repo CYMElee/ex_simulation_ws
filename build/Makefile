@@ -1052,6 +1052,19 @@ MAV1/fast:
 .PHONY : MAV1/fast
 
 #=============================================================================
+# Target rules for targets named trajectory_generator
+
+# Build rule for target.
+trajectory_generator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trajectory_generator
+.PHONY : trajectory_generator
+
+# fast build rule for target.
+trajectory_generator/fast:
+	$(MAKE) -f ex_ground/CMakeFiles/trajectory_generator.dir/build.make ex_ground/CMakeFiles/trajectory_generator.dir/build
+.PHONY : trajectory_generator/fast
+
+#=============================================================================
 # Target rules for targets named fly_mode
 
 # Build rule for target.
@@ -1145,6 +1158,7 @@ help:
 	@echo "... MAV2"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... MAV1"
+	@echo "... trajectory_generator"
 	@echo "... fly_mode"
 .PHONY : help
 
