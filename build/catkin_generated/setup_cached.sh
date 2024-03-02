@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/lee/workspace/ROS_ws/ex_simulation_ws/build'
+export PWD='/home/lee/workspace/ROS_WS/ex_simulation_ws/build'

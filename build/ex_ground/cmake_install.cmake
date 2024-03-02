@@ -1,8 +1,8 @@
-# Install script for directory: /home/lee/workspace/ROS_ws/ex_simulation_ws/src/ex_ground
+# Install script for directory: /home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex_ground
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/lee/workspace/ROS_ws/ex_simulation_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/lee/workspace/ROS_WS/ex_simulation_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/lee/workspace/ROS_ws/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_ground.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_ground.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ex_ground/cmake" TYPE FILE FILES
-    "/home/lee/workspace/ROS_ws/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_groundConfig.cmake"
-    "/home/lee/workspace/ROS_ws/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_groundConfig-version.cmake"
+    "/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_groundConfig.cmake"
+    "/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex_ground/catkin_generated/installspace/ex_groundConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ex_ground" TYPE FILE FILES "/home/lee/workspace/ROS_ws/ex_simulation_ws/src/ex_ground/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ex_ground" TYPE FILE FILES "/home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex_ground/package.xml")
 endif()
 

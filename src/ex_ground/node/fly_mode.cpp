@@ -113,12 +113,11 @@ int main(int argc,char **argv)
         ("/uav3/mavros/state",10,state_cb4);
     ros::Publisher system_trajectory = nh.advertise<std_msgs::Int16>("system/trajectory",10);
 
-    ros::Publisher MAV_arm = nh.advertise<std_msgs::Bool>("MAV/arm",10);
 
-    ros::Publisher MAV_takeoff = nh.advertise<std_msgs::Bool>("MAV/takeoff",10);
+    ros::Publisher MAV_takeoff = nh.advertise<std_msgs::Bool>("/MAV/takeoff",10);
 
 
-    ROS_INFO("(0):takeoff\n (1):hovering_gripper_stop\n (2):hovering_gripper_scissors\n (3):land");
+    ROS_INFO("\n(0):hovering_gripper_stop\n (1):hovering_gripper_scissors\n (2):land");
     
     ros::Rate rate(50);
     sleep(30);
@@ -135,7 +134,6 @@ int main(int argc,char **argv)
                         arm_signel.data = ARM;
                         ROS_INFO("THE FLY TRAJECTORY IS: HOVERING_GRIPPER_STATIC!!!");
                         system_trajectory.publish(trajectory);
-                        MAV_arm.publish(arm_signel);
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                     
@@ -159,7 +157,6 @@ int main(int argc,char **argv)
                         arm_signel.data = ARM;
                         ROS_INFO("THE FLY TRAJECTORY IS: HOVERING_GRIPPER_SCISSORS!!!");
                         system_trajectory.publish(trajectory);
-                        MAV_arm.publish(arm_signel);
                         ROS_INFO("PREPARING STE TO GUIDE MODE!!!!!!");
                         ROS_INFO("PREPARING STE TO ARMING!!!");
                         }
@@ -183,7 +180,7 @@ int main(int argc,char **argv)
                     arm_signel.data = Kill;
                     ROS_INFO("THE FLY TRAJECTORY IS: LAND!!!");
                     system_trajectory.publish(trajectory);
-                    MAV_arm.publish(arm_signel);
+                    
                     ROS_INFO("PREPARING SET TO LAND MODE!!!");
                     ROS_INFO("PREPARING STE TO DISARM !!!");
                 }
