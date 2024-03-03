@@ -8,6 +8,7 @@
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/Mavlink.h>
 #include "std_msgs/Int16.h"
+#define KILL 2
 mavros_msgs::State current_state;
 geometry_msgs::PoseStamped pose;
 
@@ -28,11 +29,7 @@ void trajectory_mode_cb(const std_msgs::Int16::ConstPtr& msg)
   //  take_single = *msg;
 //}
 
-enum {
-    HOVERING_GRIPPER_STATIC,
-    HOVERING_GRIPPER_SCISSORS,
-    LAND,
-}TRAJECTORY;
+
 
 int main(int argv,char** argc)
 {
@@ -40,13 +37,13 @@ int main(int argv,char** argc)
     ros::NodeHandle nh;
 
     ros::Subscriber trajectory_mode = nh.subscribe<std_msgs::Int16>
-        ("system/trajectory",10,trajectory_mode_cb); 
+        ("/system/trajectory",1000,trajectory_mode_cb); 
    
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
-        ("mavros/state", 10, state_cb);
+        ("mavros/state", 1000, state_cb);
 
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>
-        ("mavros/setpoint_position/local", 10);
+        ("mavros/setpoint_position/local", 1000);
     
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
         ("mavros/cmd/arming");
@@ -56,16 +53,9 @@ int main(int argv,char** argc)
 
   //  ros::Subscriber wait_takeoff =nh.subscribe<std_msgs::Bool>
        // ("/MAV/takeoff",10,takeoff_cb);
-
     ros::Rate rate(100);
-    ros::Time time_out = ros::Time::now();
-    while(ros::ok() && ros::Time::now()-time_out<ros::Duration(3))
-    {
-        ros::spinOnce();
-        rate.sleep();
-    } 
 
-   
+    
     while(ros::ok() && !current_state.connected){
         ros::spinOnce();
         rate.sleep();
@@ -120,14 +110,10 @@ int main(int argv,char** argc)
     //             last_request = ros::Time::now();
     //         }
     //     }
-    while(ros::ok()){
+    while(ros::ok() && traj.data != 2){
         
         local_pos_pub.publish(pose);
-        //if(take_single.data == 1)
-        //{
-        ////    ROS_WARN("ALREADY_TAKEOFF");
-        //    break;
-       // }
+
         ros::spinOnce();
         rate.sleep();   
     }

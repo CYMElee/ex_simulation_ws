@@ -42,7 +42,7 @@ int main(int argc,char **argv)
     phi.data.resize(3);
 
     ros::Subscriber trajectory_mode = nh.subscribe<std_msgs::Int16>
-        ("system/trajectory",10,trajectory_mode_cb); 
+        ("system/trajectory",100,trajectory_mode_cb); 
     ros::Publisher desire_position = nh.advertise<std_msgs::Float32MultiArray>
         ("platform/desire_position",10);
     ros::Publisher desire_velocity = nh.advertise<std_msgs::Float32MultiArray>
@@ -66,7 +66,6 @@ int main(int argc,char **argv)
         rate.sleep();
     }
 
-
     ros::topic::waitForMessage<std_msgs::Bool>("/MAV/takeoff");
     ROS_WARN("START_GENERATE_TRAJECTORY");
 
@@ -74,8 +73,8 @@ int main(int argc,char **argv)
     {
         case HOVERING_GRIPPER_STATIC:
             ROS_WARN("TRAJECTORY:HARVING(STATIC)");
-            ROS_INFO("c:%d",traj.data);
-            while(ros::ok() )
+            
+            while(ros::ok())
             {   /*platform*/
                 pd.data[0] = 0;
                 pd.data[1] = 0;

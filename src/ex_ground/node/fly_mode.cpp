@@ -88,6 +88,7 @@ int main(int argc,char **argv)
     trajectory.data = -1;
     arm_signel.data = 0;
     takeoff_signal.data  = 0;
+    kill.data = 1;
 
     ros::Subscriber MAV1 = nh.subscribe<mavros_msgs::State>
         ("/uav0/mavros/state",10,state_cb1);
@@ -97,7 +98,7 @@ int main(int argc,char **argv)
         ("/uav2/mavros/state",10,state_cb3);
     ros::Subscriber MAV4 = nh.subscribe<mavros_msgs::State>
         ("/uav3/mavros/state",10,state_cb4);
-    ros::Publisher system_trajectory = nh.advertise<std_msgs::Int16>("system/trajectory",10);
+    ros::Publisher system_trajectory = nh.advertise<std_msgs::Int16>("/system/trajectory",10);
     ros::Publisher system_kill = nh.advertise<std_msgs::Bool>("/system/kill",10);
 
     ros::Publisher MAV_takeoff = nh.advertise<std_msgs::Bool>("/MAV/takeoff",10);
@@ -105,7 +106,7 @@ int main(int argc,char **argv)
 
     ROS_INFO("\n(0):hovering_gripper_stop\n (1):hovering_gripper_scissors\n (2):land");
     
-    ros::Rate rate(100);
+    ros::Rate rate(20);
     while(ros::ok())
     {
        
@@ -164,12 +165,16 @@ int main(int argc,char **argv)
             case 'C':
                 {
                     trajectory.data = LAND;
+                    ros::Time time_out = ros::Time::now();
+                    while(ros::ok() && ros::Time::now()-time_out<ros::Duration(30))
+                    {
                     ROS_INFO("THE FLY TRAJECTORY IS: LAND!!!");
                     system_trajectory.publish(trajectory);
-                    system_kill.publish(kill);
-
                     ROS_INFO("PREPARING SET TO LAND MODE!!!");
                     ROS_INFO("PREPARING STE TO DISARM !!!");
+                    ros::spinOnce();
+                    rate.sleep();
+                    }   
                 }
                 break;
             }
