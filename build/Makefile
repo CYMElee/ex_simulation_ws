@@ -1052,17 +1052,30 @@ MAV1/fast:
 .PHONY : MAV1/fast
 
 #=============================================================================
-# Target rules for targets named position_controller
+# Target rules for targets named gripper
 
 # Build rule for target.
-position_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 position_controller
-.PHONY : position_controller
+gripper: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gripper
+.PHONY : gripper
 
 # fast build rule for target.
-position_controller/fast:
-	$(MAKE) -f ex_controller/CMakeFiles/position_controller.dir/build.make ex_controller/CMakeFiles/position_controller.dir/build
-.PHONY : position_controller/fast
+gripper/fast:
+	$(MAKE) -f ex_controller/CMakeFiles/gripper.dir/build.make ex_controller/CMakeFiles/gripper.dir/build
+.PHONY : gripper/fast
+
+#=============================================================================
+# Target rules for targets named position
+
+# Build rule for target.
+position: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 position
+.PHONY : position
+
+# fast build rule for target.
+position/fast:
+	$(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/build
+.PHONY : position/fast
 
 #=============================================================================
 # Target rules for targets named trajectory_generator
@@ -1171,7 +1184,8 @@ help:
 	@echo "... MAV2"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... MAV1"
-	@echo "... position_controller"
+	@echo "... gripper"
+	@echo "... position"
 	@echo "... trajectory_generator"
 	@echo "... fly_mode"
 .PHONY : help

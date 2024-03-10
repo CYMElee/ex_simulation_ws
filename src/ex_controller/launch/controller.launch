@@ -1,0 +1,4 @@
+<launch> 
+    <node name="gripper_controller" pkg="ex_controller" type="gripper" output="screen"></node>
+    <node name="position_controller" pkg="ex_controller" type="position" output="screen"></node>
+</launch>

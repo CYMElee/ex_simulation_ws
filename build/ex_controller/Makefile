@@ -168,19 +168,61 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-ex_controller/CMakeFiles/position_controller.dir/rule:
-	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/position_controller.dir/rule
-.PHONY : ex_controller/CMakeFiles/position_controller.dir/rule
+ex_controller/CMakeFiles/gripper.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/gripper.dir/rule
+.PHONY : ex_controller/CMakeFiles/gripper.dir/rule
 
 # Convenience name for target.
-position_controller: ex_controller/CMakeFiles/position_controller.dir/rule
+gripper: ex_controller/CMakeFiles/gripper.dir/rule
 
-.PHONY : position_controller
+.PHONY : gripper
 
 # fast build rule for target.
-position_controller/fast:
-	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position_controller.dir/build.make ex_controller/CMakeFiles/position_controller.dir/build
-.PHONY : position_controller/fast
+gripper/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/gripper.dir/build.make ex_controller/CMakeFiles/gripper.dir/build
+.PHONY : gripper/fast
+
+# Convenience name for target.
+ex_controller/CMakeFiles/position.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/position.dir/rule
+.PHONY : ex_controller/CMakeFiles/position.dir/rule
+
+# Convenience name for target.
+position: ex_controller/CMakeFiles/position.dir/rule
+
+.PHONY : position
+
+# fast build rule for target.
+position/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/build
+.PHONY : position/fast
+
+node/gripper_controller.o: node/gripper_controller.cpp.o
+
+.PHONY : node/gripper_controller.o
+
+# target to build an object file
+node/gripper_controller.cpp.o:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/gripper.dir/build.make ex_controller/CMakeFiles/gripper.dir/node/gripper_controller.cpp.o
+.PHONY : node/gripper_controller.cpp.o
+
+node/gripper_controller.i: node/gripper_controller.cpp.i
+
+.PHONY : node/gripper_controller.i
+
+# target to preprocess a source file
+node/gripper_controller.cpp.i:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/gripper.dir/build.make ex_controller/CMakeFiles/gripper.dir/node/gripper_controller.cpp.i
+.PHONY : node/gripper_controller.cpp.i
+
+node/gripper_controller.s: node/gripper_controller.cpp.s
+
+.PHONY : node/gripper_controller.s
+
+# target to generate assembly for a file
+node/gripper_controller.cpp.s:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/gripper.dir/build.make ex_controller/CMakeFiles/gripper.dir/node/gripper_controller.cpp.s
+.PHONY : node/gripper_controller.cpp.s
 
 node/position_controller.o: node/position_controller.cpp.o
 
@@ -188,7 +230,7 @@ node/position_controller.o: node/position_controller.cpp.o
 
 # target to build an object file
 node/position_controller.cpp.o:
-	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position_controller.dir/build.make ex_controller/CMakeFiles/position_controller.dir/node/position_controller.cpp.o
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/node/position_controller.cpp.o
 .PHONY : node/position_controller.cpp.o
 
 node/position_controller.i: node/position_controller.cpp.i
@@ -197,7 +239,7 @@ node/position_controller.i: node/position_controller.cpp.i
 
 # target to preprocess a source file
 node/position_controller.cpp.i:
-	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position_controller.dir/build.make ex_controller/CMakeFiles/position_controller.dir/node/position_controller.cpp.i
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/node/position_controller.cpp.i
 .PHONY : node/position_controller.cpp.i
 
 node/position_controller.s: node/position_controller.cpp.s
@@ -206,7 +248,7 @@ node/position_controller.s: node/position_controller.cpp.s
 
 # target to generate assembly for a file
 node/position_controller.cpp.s:
-	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position_controller.dir/build.make ex_controller/CMakeFiles/position_controller.dir/node/position_controller.cpp.s
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/node/position_controller.cpp.s
 .PHONY : node/position_controller.cpp.s
 
 # Help Target
@@ -222,7 +264,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... install/local"
-	@echo "... position_controller"
+	@echo "... gripper"
+	@echo "... position"
+	@echo "... node/gripper_controller.o"
+	@echo "... node/gripper_controller.i"
+	@echo "... node/gripper_controller.s"
 	@echo "... node/position_controller.o"
 	@echo "... node/position_controller.i"
 	@echo "... node/position_controller.s"

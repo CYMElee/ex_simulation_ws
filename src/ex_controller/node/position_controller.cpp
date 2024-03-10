@@ -6,7 +6,8 @@
 #include <eigen_conversions/eigen_msg.h>
 
 #define G 9.81 //greavity
-#define  M 0.012 //kg
+#define  M_main 0.012 //kg
+#define  M_qc  0.03 //kg
 
 
 using namespace Eigen;
@@ -94,7 +95,7 @@ void total_thrust()
     ev(1) = p_dot(1) - pd_dot(1);
     ev(2) = p_dot(2) - pd_dot(2);
 
-    fr = M*(G*z-Kp*ep-Kv*ev);
+    fr = ((M_qc+0.006)*4+M_main)*(G*z-Kp*ep-Kv*ev);
     u1 = R.transpose()*fr;
     
     t.data[0] = u1(0);
@@ -112,7 +113,7 @@ int main(int argc,char **argv)
     //control gain
 Kp << 4.5, 0 , 0 ,
       0  , 4.5,0 ,
-      0  , 0,  100;
+      0  , 0,  5;
 
 Kv << 2  , 0  ,0 ,
       0  , 2  ,0,
