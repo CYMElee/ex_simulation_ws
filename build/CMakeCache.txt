@@ -413,6 +413,12 @@ ex250_BINARY_DIR:STATIC=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex250
 ex250_SOURCE_DIR:STATIC=/home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex250
 
 //Value Computed by CMake
+ex_controller_BINARY_DIR:STATIC=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex_controller
+
+//Value Computed by CMake
+ex_controller_SOURCE_DIR:STATIC=/home/lee/workspace/ROS_WS/ex_simulation_ws/src/ex_controller
+
+//Value Computed by CMake
 ex_ground_BINARY_DIR:STATIC=/home/lee/workspace/ROS_WS/ex_simulation_ws/build/ex_ground
 
 //Value Computed by CMake
@@ -702,7 +708,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
