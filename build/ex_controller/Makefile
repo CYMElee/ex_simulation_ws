@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+ex_controller/CMakeFiles/mapper.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/mapper.dir/rule
+.PHONY : ex_controller/CMakeFiles/mapper.dir/rule
+
+# Convenience name for target.
+mapper: ex_controller/CMakeFiles/mapper.dir/rule
+
+.PHONY : mapper
+
+# fast build rule for target.
+mapper/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/mapper.dir/build.make ex_controller/CMakeFiles/mapper.dir/build
+.PHONY : mapper/fast
+
+# Convenience name for target.
 ex_controller/CMakeFiles/gripper.dir/rule:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/gripper.dir/rule
 .PHONY : ex_controller/CMakeFiles/gripper.dir/rule
@@ -251,6 +266,33 @@ node/position_controller.cpp.s:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/node/position_controller.cpp.s
 .PHONY : node/position_controller.cpp.s
 
+node/wrench_mapper.o: node/wrench_mapper.cpp.o
+
+.PHONY : node/wrench_mapper.o
+
+# target to build an object file
+node/wrench_mapper.cpp.o:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/mapper.dir/build.make ex_controller/CMakeFiles/mapper.dir/node/wrench_mapper.cpp.o
+.PHONY : node/wrench_mapper.cpp.o
+
+node/wrench_mapper.i: node/wrench_mapper.cpp.i
+
+.PHONY : node/wrench_mapper.i
+
+# target to preprocess a source file
+node/wrench_mapper.cpp.i:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/mapper.dir/build.make ex_controller/CMakeFiles/mapper.dir/node/wrench_mapper.cpp.i
+.PHONY : node/wrench_mapper.cpp.i
+
+node/wrench_mapper.s: node/wrench_mapper.cpp.s
+
+.PHONY : node/wrench_mapper.s
+
+# target to generate assembly for a file
+node/wrench_mapper.cpp.s:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/mapper.dir/build.make ex_controller/CMakeFiles/mapper.dir/node/wrench_mapper.cpp.s
+.PHONY : node/wrench_mapper.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -263,6 +305,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... mapper"
 	@echo "... install/local"
 	@echo "... gripper"
 	@echo "... position"
@@ -272,6 +315,9 @@ help:
 	@echo "... node/position_controller.o"
 	@echo "... node/position_controller.i"
 	@echo "... node/position_controller.s"
+	@echo "... node/wrench_mapper.o"
+	@echo "... node/wrench_mapper.i"
+	@echo "... node/wrench_mapper.s"
 .PHONY : help
 
 

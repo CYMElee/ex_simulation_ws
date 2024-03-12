@@ -140,6 +140,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(position node/position_controller.cpp)
 add_executable(gripper node/gripper_controller.cpp)
+add_executable(mapper node/wrench_mapper.cpp)
+add_executable(attitude node/attitude_controller.cpp)
 
 
 ## Rename C++ executable without prefix
@@ -158,6 +160,14 @@ target_link_libraries(position
   ${catkin_LIBRARIES}
 )
 target_link_libraries(gripper
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(mapper
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(attitude
   ${catkin_LIBRARIES}
 )
 

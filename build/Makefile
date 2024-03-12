@@ -1052,6 +1052,19 @@ MAV1/fast:
 .PHONY : MAV1/fast
 
 #=============================================================================
+# Target rules for targets named mapper
+
+# Build rule for target.
+mapper: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mapper
+.PHONY : mapper
+
+# fast build rule for target.
+mapper/fast:
+	$(MAKE) -f ex_controller/CMakeFiles/mapper.dir/build.make ex_controller/CMakeFiles/mapper.dir/build
+.PHONY : mapper/fast
+
+#=============================================================================
 # Target rules for targets named gripper
 
 # Build rule for target.
@@ -1184,6 +1197,7 @@ help:
 	@echo "... MAV2"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... MAV1"
+	@echo "... mapper"
 	@echo "... gripper"
 	@echo "... position"
 	@echo "... trajectory_generator"

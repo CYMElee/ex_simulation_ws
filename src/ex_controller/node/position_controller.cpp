@@ -156,6 +156,9 @@ z<< 0,0,1;
     ros::Publisher desire_thrust_total = nh.advertise<std_msgs::Float32MultiArray>
         ("/platform/desire_thrust_total",10);
    // ros::topic::waitForMessage<std_msgs::Float32MultiArray>("/platform/measure_position");
+   t.data[0] = 0;
+   t.data[1] = 0;
+   t.data[2] = 1;
     ROS_INFO("RECEIVE POSITION");
     ros::Rate rate(100);
     while(ros::ok())
