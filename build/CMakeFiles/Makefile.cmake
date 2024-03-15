@@ -319,6 +319,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "ex250/CMakeFiles/MAV2.dir/DependInfo.cmake"
   "ex250/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "ex250/CMakeFiles/MAV1.dir/DependInfo.cmake"
+  "ex_controller/CMakeFiles/attitude.dir/DependInfo.cmake"
   "ex_controller/CMakeFiles/mapper.dir/DependInfo.cmake"
   "ex_controller/CMakeFiles/gripper.dir/DependInfo.cmake"
   "ex_controller/CMakeFiles/position.dir/DependInfo.cmake"

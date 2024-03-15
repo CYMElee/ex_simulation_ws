@@ -106,7 +106,7 @@ int main(int argc,char **argv)
 
     ROS_INFO("\n(0):hovering_gripper_stop\n (1):hovering_gripper_scissors\n (2):land");
     
-    ros::Rate rate(20);
+    ros::Rate rate(100);
     while(ros::ok())
     {
        

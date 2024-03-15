@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/lee/workspace/ROS_WS/ex_simulation_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -123,6 +111,18 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+ex_controller/CMakeFiles/attitude.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/attitude.dir/rule
+.PHONY : ex_controller/CMakeFiles/attitude.dir/rule
+
+# Convenience name for target.
+attitude: ex_controller/CMakeFiles/attitude.dir/rule
+
+.PHONY : attitude
+
+# fast build rule for target.
+attitude/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/attitude.dir/build.make ex_controller/CMakeFiles/attitude.dir/build
+.PHONY : attitude/fast
+
+# Convenience name for target.
 ex_controller/CMakeFiles/mapper.dir/rule:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/mapper.dir/rule
 .PHONY : ex_controller/CMakeFiles/mapper.dir/rule
@@ -211,6 +226,33 @@ position: ex_controller/CMakeFiles/position.dir/rule
 position/fast:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/build
 .PHONY : position/fast
+
+node/attitude_controller.o: node/attitude_controller.cpp.o
+
+.PHONY : node/attitude_controller.o
+
+# target to build an object file
+node/attitude_controller.cpp.o:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/attitude.dir/build.make ex_controller/CMakeFiles/attitude.dir/node/attitude_controller.cpp.o
+.PHONY : node/attitude_controller.cpp.o
+
+node/attitude_controller.i: node/attitude_controller.cpp.i
+
+.PHONY : node/attitude_controller.i
+
+# target to preprocess a source file
+node/attitude_controller.cpp.i:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/attitude.dir/build.make ex_controller/CMakeFiles/attitude.dir/node/attitude_controller.cpp.i
+.PHONY : node/attitude_controller.cpp.i
+
+node/attitude_controller.s: node/attitude_controller.cpp.s
+
+.PHONY : node/attitude_controller.s
+
+# target to generate assembly for a file
+node/attitude_controller.cpp.s:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/attitude.dir/build.make ex_controller/CMakeFiles/attitude.dir/node/attitude_controller.cpp.s
+.PHONY : node/attitude_controller.cpp.s
 
 node/gripper_controller.o: node/gripper_controller.cpp.o
 
@@ -299,16 +341,20 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
+	@echo "... install/strip"
+	@echo "... attitude"
 	@echo "... mapper"
 	@echo "... install/local"
 	@echo "... gripper"
 	@echo "... position"
+	@echo "... node/attitude_controller.o"
+	@echo "... node/attitude_controller.i"
+	@echo "... node/attitude_controller.s"
 	@echo "... node/gripper_controller.o"
 	@echo "... node/gripper_controller.i"
 	@echo "... node/gripper_controller.s"

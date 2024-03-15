@@ -1052,6 +1052,19 @@ MAV1/fast:
 .PHONY : MAV1/fast
 
 #=============================================================================
+# Target rules for targets named attitude
+
+# Build rule for target.
+attitude: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 attitude
+.PHONY : attitude
+
+# fast build rule for target.
+attitude/fast:
+	$(MAKE) -f ex_controller/CMakeFiles/attitude.dir/build.make ex_controller/CMakeFiles/attitude.dir/build
+.PHONY : attitude/fast
+
+#=============================================================================
 # Target rules for targets named mapper
 
 # Build rule for target.
@@ -1197,6 +1210,7 @@ help:
 	@echo "... MAV2"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... MAV1"
+	@echo "... attitude"
 	@echo "... mapper"
 	@echo "... gripper"
 	@echo "... position"
