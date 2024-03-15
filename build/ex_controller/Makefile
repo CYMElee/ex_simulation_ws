@@ -198,6 +198,21 @@ mapper/fast:
 .PHONY : mapper/fast
 
 # Convenience name for target.
+ex_controller/CMakeFiles/servo.dir/rule:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/servo.dir/rule
+.PHONY : ex_controller/CMakeFiles/servo.dir/rule
+
+# Convenience name for target.
+servo: ex_controller/CMakeFiles/servo.dir/rule
+
+.PHONY : servo
+
+# fast build rule for target.
+servo/fast:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/servo.dir/build.make ex_controller/CMakeFiles/servo.dir/build
+.PHONY : servo/fast
+
+# Convenience name for target.
 ex_controller/CMakeFiles/gripper.dir/rule:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ex_controller/CMakeFiles/gripper.dir/rule
 .PHONY : ex_controller/CMakeFiles/gripper.dir/rule
@@ -308,6 +323,33 @@ node/position_controller.cpp.s:
 	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/position.dir/build.make ex_controller/CMakeFiles/position.dir/node/position_controller.cpp.s
 .PHONY : node/position_controller.cpp.s
 
+node/qc_servo.o: node/qc_servo.cpp.o
+
+.PHONY : node/qc_servo.o
+
+# target to build an object file
+node/qc_servo.cpp.o:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/servo.dir/build.make ex_controller/CMakeFiles/servo.dir/node/qc_servo.cpp.o
+.PHONY : node/qc_servo.cpp.o
+
+node/qc_servo.i: node/qc_servo.cpp.i
+
+.PHONY : node/qc_servo.i
+
+# target to preprocess a source file
+node/qc_servo.cpp.i:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/servo.dir/build.make ex_controller/CMakeFiles/servo.dir/node/qc_servo.cpp.i
+.PHONY : node/qc_servo.cpp.i
+
+node/qc_servo.s: node/qc_servo.cpp.s
+
+.PHONY : node/qc_servo.s
+
+# target to generate assembly for a file
+node/qc_servo.cpp.s:
+	cd /home/lee/workspace/ROS_WS/ex_simulation_ws/build && $(MAKE) -f ex_controller/CMakeFiles/servo.dir/build.make ex_controller/CMakeFiles/servo.dir/node/qc_servo.cpp.s
+.PHONY : node/qc_servo.cpp.s
+
 node/wrench_mapper.o: node/wrench_mapper.cpp.o
 
 .PHONY : node/wrench_mapper.o
@@ -350,6 +392,7 @@ help:
 	@echo "... attitude"
 	@echo "... mapper"
 	@echo "... install/local"
+	@echo "... servo"
 	@echo "... gripper"
 	@echo "... position"
 	@echo "... node/attitude_controller.o"
@@ -361,6 +404,9 @@ help:
 	@echo "... node/position_controller.o"
 	@echo "... node/position_controller.i"
 	@echo "... node/position_controller.s"
+	@echo "... node/qc_servo.o"
+	@echo "... node/qc_servo.i"
+	@echo "... node/qc_servo.s"
 	@echo "... node/wrench_mapper.o"
 	@echo "... node/wrench_mapper.i"
 	@echo "... node/wrench_mapper.s"

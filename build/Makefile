@@ -1078,6 +1078,19 @@ mapper/fast:
 .PHONY : mapper/fast
 
 #=============================================================================
+# Target rules for targets named servo
+
+# Build rule for target.
+servo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 servo
+.PHONY : servo
+
+# fast build rule for target.
+servo/fast:
+	$(MAKE) -f ex_controller/CMakeFiles/servo.dir/build.make ex_controller/CMakeFiles/servo.dir/build
+.PHONY : servo/fast
+
+#=============================================================================
 # Target rules for targets named gripper
 
 # Build rule for target.
@@ -1212,6 +1225,7 @@ help:
 	@echo "... MAV1"
 	@echo "... attitude"
 	@echo "... mapper"
+	@echo "... servo"
 	@echo "... gripper"
 	@echo "... position"
 	@echo "... trajectory_generator"

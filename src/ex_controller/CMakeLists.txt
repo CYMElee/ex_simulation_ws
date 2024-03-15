@@ -142,6 +142,7 @@ add_executable(position node/position_controller.cpp)
 add_executable(gripper node/gripper_controller.cpp)
 add_executable(mapper node/wrench_mapper.cpp)
 add_executable(attitude node/attitude_controller.cpp)
+add_executable(servo node/qc_servo.cpp)
 
 
 ## Rename C++ executable without prefix
@@ -168,6 +169,10 @@ target_link_libraries(mapper
 )
 
 target_link_libraries(attitude
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(servo
   ${catkin_LIBRARIES}
 )
 
