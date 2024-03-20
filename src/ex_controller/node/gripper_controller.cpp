@@ -50,8 +50,8 @@ int main(int argc,char **argv)
     phi.data[1] = 0.1;
     phi.data[2] = 0.1;
     phid.data[0] = 1.57;
-    phid.data[1] = 0;
-    phid.data[2] = 0;
+    phid.data[1] = 0.1;
+    phid.data[2] = 0.1;
     M.data = 0.1;
 
     ros::Subscriber phi_measure = nh.subscribe<std_msgs::Float32MultiArray>

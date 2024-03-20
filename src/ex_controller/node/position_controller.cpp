@@ -124,18 +124,18 @@ Ki << 2.7, 0 , 0 ,
       0  , 0,  2;
 z<< 0,0,1;
 
-// t.data[0] = 0;
-// t.data[1] = 0;
-// t.data[2] = 0;
-// p(0) = 0;
-// p(1) = 0;
-// p(2) = 0;
-// p_dot(0) = 0;
-// p_dot(1) = 0;
-// p_dot(2) = 0;
-// pd_dot(0) = 0;
-// pd_dot(1) = 0;
-// pd_dot(2) = 0;
+t.data[0] = 1;
+t.data[1] = 1;
+t.data[2] = 1;
+p(0) = 1;
+p(1) = 1;
+p(2) = 1;
+p_dot(0) = 1;
+p_dot(1) = 1;
+p_dot(2) = 1;
+pd_dot(0) = 1;
+pd_dot(1) = 1;
+pd_dot(2) = 1;
 
 
     ros::Subscriber desire_position = nh.subscribe<std_msgs::Float32MultiArray>

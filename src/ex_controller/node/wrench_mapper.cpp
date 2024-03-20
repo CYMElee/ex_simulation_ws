@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
+#include "std_msgs/Float64MultiArray.h"
 #include "std_msgs/Float32.h"
 
 #include <Eigen/Dense>
@@ -10,7 +11,7 @@ using namespace Eigen;
 std_msgs::Float32MultiArray u1;
 std_msgs::Float32MultiArray u2;
 std_msgs::Float32 M;
-std_msgs::Float32MultiArray Fd;
+std_msgs::Float64MultiArray Fd;
 
 
 
@@ -164,26 +165,26 @@ int main(int argc,char **argv)
 
     ros::Publisher desire_thrust_each = nh.advertise<std_msgs::Float32MultiArray>
         ("/gripper/desire_thrust_each",10); 
-     Fd.data[0] = 0.1;
-     Fd.data[1] = 0.1;
+     Fd.data[0] = 1;
+     Fd.data[1] = 1;
      Fd.data[2] = 1;
-     Fd.data[3] = 0.1;
-     Fd.data[4] = 0.1;
+     Fd.data[3] = 1;
+     Fd.data[4] = 1;
      Fd.data[5] = 1;
-     Fd.data[6] = 0.1;
-     Fd.data[7] = 0.1;
+     Fd.data[6] = 1;
+     Fd.data[7] = 1;
      Fd.data[8] = 1;
-     Fd.data[9] = 0.1;
-     Fd.data[10]= 0.1;
+     Fd.data[9] = 1;
+     Fd.data[10]= 1;
      Fd.data[11]= 1;
-     u2.data[0] = 0.01;
-     u2.data[1] = 0.01;
-     u2.data[2] = 0.01;
-
-     u1.data[0] = 0.01;
-     u1.data[1] = 0.01;
-     u1.data[2] = 0.01;
-     M.data = 0.01;
+     u2.data[0] = 0.1;
+     u2.data[1] = 0.1;
+     u2.data[2] = 0.1;
+   
+     u1.data[0] = 0.1;
+     u1.data[1] = 0.1;
+     u1.data[2] = 0.1;
+     M.data = 2;
 
     ros::Rate rate(100);
     while(ros::ok())
