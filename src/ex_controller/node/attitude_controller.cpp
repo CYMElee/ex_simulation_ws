@@ -139,24 +139,24 @@ int main(int argc,char **argv)
 
     // give some initial                                          
 
-    u2.data[0] = 0.01;
-    u2.data[1] = 0.01;
-    u2.data[2] = 0.01;
+    u2.data[0] = 0.1;
+    u2.data[1] = 0.1;
+    u2.data[2] = 0.1;
 
-    agvr(0) = 0.01;
-    agvr(1) = 0.01;
-    agvr(2) = 0.01; 
+    agvr(0) = 0.1;
+    agvr(1) = 0.1;
+    agvr(2) = 0.1; 
 
-    omega(0) = 0.01;
-    omega(1) = 0.01;
-    omega(2) = 0.01;
+    omega(0) = 0.1;
+    omega(1) = 0.1;
+    omega(2) = 0.1;
 
-    er.data[0] = 0.01;
-    er.data[1] = 0.01;
-    er.data[2] = 0.01;                                             
-    u2.data[0] = 0.01;
-    u2.data[1] = 0.01;
-    u2.data[2] = 0.01;
+    er.data[0] = 0.1;
+    er.data[1] = 0.1;
+    er.data[2] = 0.1;                                             
+    u2.data[0] = 0.1;
+    u2.data[1] = 0.1;
+    u2.data[2] = 0.1;
     ros::Rate rate(100);
 
     while(ros::ok)
